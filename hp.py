@@ -44,8 +44,15 @@ print("Validation MAE for Random Forest Model2: {:,.0f}".format(rf_val_mae))
 
 # Create new X
 
-new_X = home_data.drop(['Id', 'SalePrice'])
-new_X = pd.get_dummies(new_X,prefix=['MSZoning', 'Street', 'Neighborhood'])
+#new_X = home_data.drop(['Id', 'SalePrice'],axis=1)
+#features = ['LotArea', 'YearBuilt', '1stFlrSF', '2ndFlrSF', 'FullBath', 'BedroomAbvGr', 'TotRmsAbvGrd', 'MSZoning', 'Street', 'Neighborhood']
+#new_X = home_data[features]
+#new_X = new_X.fillna(method='ffill')
+#print(new_X.head())
+#new_X = pd.get_dummies(new_X, dummy_na=True)
+#print(new_X.head())
+
+#print(new_X.describe)
 
 # Split into validation and training data
 new_train_X, new_val_X, new_train_y, new_val_y = train_test_split(new_X, y, random_state=1)
@@ -63,7 +70,7 @@ rf_val_mae = mean_absolute_error(rf_val_predictions, new_val_y)
 print("Validation MAE for Random Forest Model21: {:,.0f}".format(rf_val_mae))
 
 # Define the model. Set random_state to 1
-rf_model = RandomForestRegressor(n_estimators=85, random_state=1)
+rf_model = RandomForestRegressor(n_estimators=2000, random_state=1)
 rf_model.fit(new_train_X, new_train_y)
 print("Training1 completed")
 
