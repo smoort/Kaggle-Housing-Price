@@ -68,3 +68,14 @@ rf_val_predictions = rf_model.predict(val_X)
 rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)
 
 print("Validation MAE for Random Forest Model22: {:,.0f}".format(rf_val_mae))
+
+# Define the model.
+rf_model = XGBRegressor(n_estimators=5000, learning_rate=0.05)
+rf_model.fit(train_X, train_y, early_stopping_rounds=100, 
+             eval_set=[(train_X, train_y)], verbose=False)
+print("Training3 completed")
+
+rf_val_predictions = rf_model.predict(val_X)
+rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)
+
+print("Validation MAE for Random Forest Model23: {:,.0f}".format(rf_val_mae))
